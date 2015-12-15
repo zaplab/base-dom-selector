@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.$ = $;
 exports.$$ = $$;
 /**
- * @access static
  * @param {String} selector
  * @param {Element} [target]
  * @returns {Element}
@@ -18,7 +17,6 @@ function $(selector) {
 }
 
 /**
- * @access static
  * @param {String} selector
  * @param {Element} [target]
  * @returns {Array}

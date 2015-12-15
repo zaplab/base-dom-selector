@@ -1,5 +1,4 @@
 /**
- * @access static
  * @param {String} selector
  * @param {Element} [target]
  * @returns {Element}
@@ -9,7 +8,6 @@ export function $(selector, target = document) {
 }
 
 /**
- * @access static
  * @param {String} selector
  * @param {Element} [target]
  * @returns {Array}

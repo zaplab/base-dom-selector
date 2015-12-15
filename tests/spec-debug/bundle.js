@@ -121,7 +121,6 @@
 	exports.$ = $;
 	exports.$$ = $$;
 	/**
-	 * @access static
 	 * @param {String} selector
 	 * @param {Element} [target]
 	 * @returns {Element}
@@ -133,7 +132,6 @@
 	}
 
 	/**
-	 * @access static
 	 * @param {String} selector
 	 * @param {Element} [target]
 	 * @returns {Array}
