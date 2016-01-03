@@ -29,7 +29,7 @@ describe('base-dom-selector', () => {
 
     afterEach(() => {});
 
-    describe('zap-base-js-object should have the following methods', () => {
+    describe('base-dom-selector should have the following methods', () => {
         it('$', function() {
             expect($).toEqual(jasmine.any(Function));
         });

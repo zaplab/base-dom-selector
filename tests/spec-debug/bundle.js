@@ -70,7 +70,7 @@
 
 	    afterEach(function () {});
 
-	    describe('zap-base-js-object should have the following methods', function () {
+	    describe('base-dom-selector should have the following methods', function () {
 	        it('$', function () {
 	            expect(_zapBaseDomSelector.$).toEqual(jasmine.any(Function));
 	        });
