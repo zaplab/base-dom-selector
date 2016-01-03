@@ -13,9 +13,7 @@ exports.getParents = getParents;
  * @param {Element} [target]
  * @returns {Element}
  */
-function $(selector) {
-    var target = arguments.length <= 1 || arguments[1] === undefined ? document : arguments[1];
-
+function $(selector, target = document) {
     return target.querySelector(selector);
 }
 
@@ -24,9 +22,7 @@ function $(selector) {
  * @param {Element} [target]
  * @returns {Array}
  */
-function $$(selector) {
-    var target = arguments.length <= 1 || arguments[1] === undefined ? document : arguments[1];
-
+function $$(selector, target = document) {
     return Array.prototype.slice.call(target.querySelectorAll(selector), 0);
 }
 
@@ -44,11 +40,11 @@ function getNext(target) {
  * @returns {Element|null}
  */
 function getParent(target, selector) {
-    var newTarget = target.parentNode;
-    var parent = null;
+    let newTarget = target.parentNode;
+    let parent = null;
 
     if (typeof selector !== 'undefined') {
-        var $all = $$(selector);
+        const $all = $$(selector);
 
         // 9 = DOCUMENT_NODE
         while (newTarget && newTarget.nodeType !== 9) {
@@ -76,20 +72,16 @@ function getParent(target, selector) {
  * @returns {Array<Element>}
  */
 function getParents(target, selector) {
-    var newTarget = target.parentNode;
-    var condition = function condition() {
-        return true;
-    };
-    var parents = [];
+    let newTarget = target.parentNode;
+    let condition = () => true;
+    const parents = [];
 
     if (typeof selector !== 'undefined') {
-        (function () {
-            var $all = $$(selector);
+        const $all = $$(selector);
 
-            condition = function (conditionTarget) {
-                return $all.indexOf(conditionTarget) !== -1;
-            };
-        })();
+        condition = conditionTarget => {
+            return $all.indexOf(conditionTarget) !== -1;
+        };
     }
 
     // 9 = DOCUMENT_NODE
