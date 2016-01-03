@@ -33,17 +33,17 @@ const elementsInsideElement = $$('.selector', element);
 
 ### getNext
 ```js
-cons nextElement = getNext(element);
+const nextElement = getNext(element);
 ```
 
 ### getParent
 ```js
-cons parent = getParent(element);
-cons specificParent = getParent(element, '.selector');
+const parent = getParent(element);
+const specificParent = getParent(element, '.selector');
 ```
 
 ### getParents
 ```js
-cons parents = getParents(element);
-cons specificParents = getParents(element, '.selector');
+const parents = getParents(element);
+const specificParents = getParents(element, '.selector');
 ```
