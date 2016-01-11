@@ -13,7 +13,9 @@ exports.getParents = getParents;
  * @param {Element} [target]
  * @returns {Element}
  */
-function $(selector, target = document) {
+function $(selector) {
+    let target = arguments.length <= 1 || arguments[1] === undefined ? document : arguments[1];
+
     return target.querySelector(selector);
 }
 
@@ -22,7 +24,9 @@ function $(selector, target = document) {
  * @param {Element} [target]
  * @returns {Array}
  */
-function $$(selector, target = document) {
+function $$(selector) {
+    let target = arguments.length <= 1 || arguments[1] === undefined ? document : arguments[1];
+
     return Array.prototype.slice.call(target.querySelectorAll(selector), 0);
 }
 

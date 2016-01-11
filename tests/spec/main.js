@@ -29,7 +29,7 @@ describe('base-dom-selector', () => {
 
     afterEach(() => {});
 
-    describe('base-dom-selector should have the following methods', () => {
+    describe('base-dom-selector should export the following', () => {
         it('$', function() {
             expect($).toEqual(jasmine.any(Function));
         });
