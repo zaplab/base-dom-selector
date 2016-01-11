@@ -70,7 +70,7 @@
 
 	    afterEach(function () {});
 
-	    describe('base-dom-selector should have the following methods', function () {
+	    describe('base-dom-selector should export the following', function () {
 	        it('$', function () {
 	            expect(_zapBaseDomSelector.$).toEqual(jasmine.any(Function));
 	        });
