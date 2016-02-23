@@ -32,10 +32,29 @@ function $$(selector) {
 
 /**
  * @param {Element} target
+ * @param {String} [selector]
  * @returns {Element|null}
  */
-function getNext(target) {
-    return target.nextElementSibling;
+function getNext(target, selector) {
+    let nextElement = target.nextElementSibling;
+    let foundElement = null;
+
+    if (typeof selector !== 'undefined') {
+        const $all = $$(selector);
+
+        while (nextElement) {
+            if ($all.indexOf(nextElement) !== -1) {
+                foundElement = nextElement;
+                break;
+            }
+
+            nextElement = nextElement.nextElementSibling;
+        }
+    } else {
+        foundElement = nextElement;
+    }
+
+    return foundElement;
 }
 
 /**

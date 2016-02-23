@@ -18,11 +18,15 @@ describe('base-dom-selector', () => {
     childElement1.className = 'child';
 
     const childElement2 = document.createElement('li');
-    childElement2.className = 'child last';
+    childElement2.className = 'child special';
+
+    const childElement3 = document.createElement('li');
+    childElement3.className = 'child last';
 
     beforeEach(() => {
         element1.appendChild(childElement1);
         element1.appendChild(childElement2);
+        element1.appendChild(childElement3);
         document.body.appendChild(childElement0);
         document.body.appendChild(element1);
     });
@@ -69,13 +73,13 @@ describe('base-dom-selector', () => {
         it('$(".child") should find all elements with class .child', () => {
             const $children = $$('.child');
 
-            expect($children.length).toBe(3);
+            expect($children.length).toBe(4);
         });
 
         it('$(".child", parentElement) should find all elements with class .child of parentElement', () => {
             const $children = $$('.child', element1);
 
-            expect($children.length).toBe(2);
+            expect($children.length).toBe(3);
         });
     });
 
@@ -86,8 +90,14 @@ describe('base-dom-selector', () => {
             expect($next).toBe(childElement2);
         });
 
-        it('getNext(childElement2) should be null', () => {
-            const $next = getNext(childElement2);
+        it('getNext(childElement1, \'.special\') should be childElement2', () => {
+            const $next = getNext(childElement1, '.special');
+
+            expect($next).toBe(childElement2);
+        });
+
+        it('getNext(childElement3) should be null', () => {
+            const $next = getNext(childElement3);
 
             expect($next).toBe(null);
         });
