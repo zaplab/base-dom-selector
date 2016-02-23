@@ -34,7 +34,9 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            'tests/spec/*.js': ['webpack'],
+            'tests/spec/*.js': [
+                'webpack',
+            ],
         },
 
         reporters: [

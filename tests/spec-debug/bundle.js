@@ -59,11 +59,15 @@
 	    childElement1.className = 'child';
 
 	    var childElement2 = document.createElement('li');
-	    childElement2.className = 'child last';
+	    childElement2.className = 'child special';
+
+	    var childElement3 = document.createElement('li');
+	    childElement3.className = 'child last';
 
 	    beforeEach(function () {
 	        element1.appendChild(childElement1);
 	        element1.appendChild(childElement2);
+	        element1.appendChild(childElement3);
 	        document.body.appendChild(childElement0);
 	        document.body.appendChild(element1);
 	    });
@@ -110,13 +114,13 @@
 	        it('$(".child") should find all elements with class .child', function () {
 	            var $children = (0, _zapBaseDomSelector.$$)('.child');
 
-	            expect($children.length).toBe(3);
+	            expect($children.length).toBe(4);
 	        });
 
 	        it('$(".child", parentElement) should find all elements with class .child of parentElement', function () {
 	            var $children = (0, _zapBaseDomSelector.$$)('.child', element1);
 
-	            expect($children.length).toBe(2);
+	            expect($children.length).toBe(3);
 	        });
 	    });
 
@@ -127,8 +131,14 @@
 	            expect($next).toBe(childElement2);
 	        });
 
-	        it('getNext(childElement2) should be null', function () {
-	            var $next = (0, _zapBaseDomSelector.getNext)(childElement2);
+	        it('getNext(childElement1, \'.special\') should be childElement2', function () {
+	            var $next = (0, _zapBaseDomSelector.getNext)(childElement1, '.special');
+
+	            expect($next).toBe(childElement2);
+	        });
+
+	        it('getNext(childElement3) should be null', function () {
+	            var $next = (0, _zapBaseDomSelector.getNext)(childElement3);
 
 	            expect($next).toBe(null);
 	        });
@@ -201,10 +211,29 @@
 
 	/**
 	 * @param {Element} target
+	 * @param {String} [selector]
 	 * @returns {Element|null}
 	 */
-	function getNext(target) {
-	    return target.nextElementSibling;
+	function getNext(target, selector) {
+	    var nextElement = target.nextElementSibling;
+	    var foundElement = null;
+
+	    if (typeof selector !== 'undefined') {
+	        var $all = $$(selector);
+
+	        while (nextElement) {
+	            if ($all.indexOf(nextElement) !== -1) {
+	                foundElement = nextElement;
+	                break;
+	            }
+
+	            nextElement = nextElement.nextElementSibling;
+	        }
+	    } else {
+	        foundElement = nextElement;
+	    }
+
+	    return foundElement;
 	}
 
 	/**
