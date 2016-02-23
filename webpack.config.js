@@ -33,16 +33,16 @@ module.exports = {
             'zap-base-dom-selector': 'src/index.js',
         },
         modulesDirectories: [
-            'src/js',
             'node_modules',
+            'src',
         ],
     },
 
     resolveLoader: {
         root: __dirname,
         modulesDirectories: [
-            'src/js',
             'node_modules',
+            'src',
         ],
     },
 };
