@@ -187,9 +187,15 @@
 	exports.getNext = getNext;
 	exports.getParent = getParent;
 	exports.getParents = getParents;
+
+	/**
+	 * @type {HTMLDocument}
+	 */
+	var document = window.document;
+
 	/**
 	 * @param {String} selector
-	 * @param {Element} [target]
+	 * @param {Element|HTMLDocument} [target]
 	 * @returns {Element}
 	 */
 	function $(selector) {
@@ -200,7 +206,7 @@
 
 	/**
 	 * @param {String} selector
-	 * @param {Element} [target]
+	 * @param {Element|HTMLDocument} [target]
 	 * @returns {Array}
 	 */
 	function $$(selector) {

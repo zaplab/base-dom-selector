@@ -1,6 +1,12 @@
+
+/**
+ * @type {HTMLDocument}
+ */
+const document = window.document;
+
 /**
  * @param {String} selector
- * @param {Element} [target]
+ * @param {Element|HTMLDocument} [target]
  * @returns {Element}
  */
 export function $(selector, target = document) {
@@ -9,7 +15,7 @@ export function $(selector, target = document) {
 
 /**
  * @param {String} selector
- * @param {Element} [target]
+ * @param {Element|HTMLDocument} [target]
  * @returns {Array}
  */
 export function $$(selector, target = document) {
