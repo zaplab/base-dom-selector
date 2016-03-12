@@ -10,6 +10,15 @@ import gutil from 'gulp-util';
 import webpack from 'webpack';
 import path from 'path';
 
+function onWarning(error) {
+    gutil.log(error);
+}
+
+function onError(error) {
+    gutil.log(error);
+    process.exit(1);
+}
+
 gulp.task('clean', gulpCallback => {
     del([
         'dist',
@@ -22,9 +31,7 @@ gulp.task('eslint', () => {
             configFile: 'tests/.eslintrc',
         }))
         .pipe(eslint.format())
-        .on('error', error => {
-            console.error('' + error);
-        });
+        .on('error', onWarning);
 });
 
 // for easier debugging of the generated spec bundle
@@ -52,12 +59,16 @@ gulp.task('specs:debug', gulpCallback => {
 });
 
 gulp.task('specs', gulpCallback => {
-    const KarmaServer = require('karma').Server;
+    const karmaServer = require('karma').Server;
 
-    new KarmaServer.start({
-        configFile: __dirname + '/karma.config.js',
+    karmaServer.start({
+        configFile: __dirname + '/karma.conf.js',
         singleRun: true,
-    }, () => {
+    }, karmaExitCode => {
+        if (karmaExitCode !== 0) {
+            process.exit(1);
+        }
+
         gulpCallback();
     });
 });
@@ -100,14 +111,22 @@ gulp.task('js', [
     return gulp.src('src/*.js')
         .pipe(babel())
         .pipe(gulp.dest('dist'))
-        .on('error', error => {
-            console.error('' + error);
-        });
+        .on('error', onError);
 });
 
-gulp.task('default', ['clean'], gulpCallback => {
+gulp.task('copy:js', () => {
+    return gulp.src('src/*.js')
+        .pipe(gulp.dest('dist/es6'))
+        .on('error', onError);
+});
+
+gulp.task('default', [
+    'clean',
+], gulpCallback => {
     runSequence(
+        'test',
         'js',
+        'copy:js',
         gulpCallback
     );
 });

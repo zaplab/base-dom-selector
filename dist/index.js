@@ -8,9 +8,15 @@ exports.$$ = $$;
 exports.getNext = getNext;
 exports.getParent = getParent;
 exports.getParents = getParents;
+
+/**
+ * @type {HTMLDocument}
+ */
+const document = window.document;
+
 /**
  * @param {String} selector
- * @param {Element} [target]
+ * @param {Element|HTMLDocument} [target]
  * @returns {Element}
  */
 function $(selector) {
@@ -21,7 +27,7 @@ function $(selector) {
 
 /**
  * @param {String} selector
- * @param {Element} [target]
+ * @param {Element|HTMLDocument} [target]
  * @returns {Array}
  */
 function $$(selector) {

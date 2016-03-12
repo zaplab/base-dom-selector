@@ -100,13 +100,15 @@
 	        it('$("#element1") should find #element1', function () {
 	            var $element1 = (0, _zapBaseDomSelector.$)('#element1');
 
-	            expect($element1).not.toBe(null);
+	            expect($element1).not.toBeUndefined();
+	            expect($element1).not.toBeNull();
 	        });
 
 	        it('$("#element1", parentElement) should find #element1 inside parentElement', function () {
 	            var $element1 = (0, _zapBaseDomSelector.$)('#element1', document.body);
 
-	            expect($element1).not.toBe(null);
+	            expect($element1).not.toBeUndefined();
+	            expect($element1).not.toBeNull();
 	        });
 	    });
 
@@ -187,9 +189,15 @@
 	exports.getNext = getNext;
 	exports.getParent = getParent;
 	exports.getParents = getParents;
+
+	/**
+	 * @type {HTMLDocument}
+	 */
+	var document = window.document;
+
 	/**
 	 * @param {String} selector
-	 * @param {Element} [target]
+	 * @param {Element|HTMLDocument} [target]
 	 * @returns {Element}
 	 */
 	function $(selector) {
@@ -200,7 +208,7 @@
 
 	/**
 	 * @param {String} selector
-	 * @param {Element} [target]
+	 * @param {Element|HTMLDocument} [target]
 	 * @returns {Array}
 	 */
 	function $$(selector) {
@@ -284,7 +292,7 @@
 	        (function () {
 	            var $all = $$(selector);
 
-	            condition = function (conditionTarget) {
+	            condition = function condition(conditionTarget) {
 	                return $all.indexOf(conditionTarget) !== -1;
 	            };
 	        })();
