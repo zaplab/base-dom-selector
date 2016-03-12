@@ -1,4 +1,4 @@
-# zap-base-dom-selector
+# zap-base-dom-selector [![Build Status](https://travis-ci.org/zaplab/base-dom-selector.svg?branch=master)](https://travis-ci.org/zaplab/base-dom-selector)
 
 just translating (and testing) some old code to ES6,
 nothing to see here ;-)
