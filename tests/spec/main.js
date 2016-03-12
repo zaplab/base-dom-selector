@@ -59,13 +59,15 @@ describe('base-dom-selector', () => {
         it('$("#element1") should find #element1', () => {
             const $element1 = $('#element1');
 
-            expect($element1).not.toBe(null);
+            expect($element1).not.toBeUndefined();
+            expect($element1).not.toBeNull();
         });
 
         it('$("#element1", parentElement) should find #element1 inside parentElement', () => {
             const $element1 = $('#element1', document.body);
 
-            expect($element1).not.toBe(null);
+            expect($element1).not.toBeUndefined();
+            expect($element1).not.toBeNull();
         });
     });
 

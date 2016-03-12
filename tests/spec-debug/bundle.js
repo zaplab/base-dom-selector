@@ -100,13 +100,15 @@
 	        it('$("#element1") should find #element1', function () {
 	            var $element1 = (0, _zapBaseDomSelector.$)('#element1');
 
-	            expect($element1).not.toBe(null);
+	            expect($element1).not.toBeUndefined();
+	            expect($element1).not.toBeNull();
 	        });
 
 	        it('$("#element1", parentElement) should find #element1 inside parentElement', function () {
 	            var $element1 = (0, _zapBaseDomSelector.$)('#element1', document.body);
 
-	            expect($element1).not.toBe(null);
+	            expect($element1).not.toBeUndefined();
+	            expect($element1).not.toBeNull();
 	        });
 	    });
 
