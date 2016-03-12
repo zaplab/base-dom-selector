@@ -52,10 +52,10 @@ gulp.task('specs:debug', gulpCallback => {
 });
 
 gulp.task('specs', gulpCallback => {
-    const KarmaServer = require('karma').Server;
+    const karmaServer = require('karma').Server;
 
-    new KarmaServer.start({
-        configFile: __dirname + '/karma.config.js',
+    karmaServer.start({
+        configFile: __dirname + '/karma.conf.js',
         singleRun: true,
     }, () => {
         gulpCallback();
