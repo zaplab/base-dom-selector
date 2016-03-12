@@ -284,7 +284,7 @@
 	        (function () {
 	            var $all = $$(selector);
 
-	            condition = function (conditionTarget) {
+	            condition = function condition(conditionTarget) {
 	                return $all.indexOf(conditionTarget) !== -1;
 	            };
 	        })();
